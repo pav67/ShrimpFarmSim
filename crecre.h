@@ -6,11 +6,12 @@
 typedef struct _crecre {
 	int age;
 	int lifeexp;
+	int adultage;
 	char sex;
 	list *lgens;
 } crecre;
 
-crecre* create_crecre(int, char);
+crecre* create_crecre(int, int, char);
 void delete_crecre(crecre*);
 void print_crecre(const crecre*);
 crecre* breed(const crecre*, const crecre*);

@@ -6,10 +6,11 @@
 #include <randomize.h>
 #include <genome.h>
 
-crecre* create_crecre(int _lifeexp, char _sex){
+crecre* create_crecre(int _adultage, int _lifeexp, char _sex){
 
 	crecre *ncre = malloc(sizeof(crecre));
 	ncre->age = 0;
+	ncre->adultage = _adultage;
 	ncre->lifeexp = _lifeexp;
 	ncre->sex = _sex;
 	ncre->lgens = init_list();
@@ -19,7 +20,7 @@ crecre* create_crecre(int _lifeexp, char _sex){
 
 crecre* breed(const crecre *_father, const crecre *_mother){
 
-	crecre *ncre = create_crecre(generate_lifeexp(), generate_sex());
+	crecre *ncre = create_crecre(generate_adult_age(), generate_lifeexp(), generate_sex());
 	node *n1 = _father->lgens->head, *n2 = _mother->lgens->head;
 	genome* ngen;
 	

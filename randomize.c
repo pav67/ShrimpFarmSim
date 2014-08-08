@@ -24,9 +24,40 @@ char generate_sex(){
 
 int generate_lifeexp(){
 	
-	int proba[] = {
-		#include "proba.txt"	
+	int proba[] = { 
+		#include "proba.txt" 
 	};
+	return proba[rand()%(sizeof(proba) / sizeof(int))];
+}
+
+int generate_egg_number(){
 	
+	int proba[] = { 
+		#include "eggs.txt" 
+	};
+	return proba[rand()%(sizeof(proba) / sizeof(int))];
+}
+
+int generate_gestation_time(){
+	
+	int proba[] = { 
+		#include "gestation.txt" 
+	};
+	return proba[rand()%(sizeof(proba) / sizeof(int))];
+}
+
+int generate_adult_age(){
+	
+	int proba[] = { 
+		#include "adult.txt" 
+	};
+	return proba[rand()%(sizeof(proba) / sizeof(int))];
+}
+
+int generate_pause(){
+
+	int proba[] = { 
+		#include "pause.txt" 
+	};
 	return proba[rand()%(sizeof(proba) / sizeof(int))];
 }
