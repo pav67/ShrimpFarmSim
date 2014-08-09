@@ -65,8 +65,22 @@ void delete_node(list *_ll, node *_n){
 	free(_n);
 }
 
-void browse_list(list* _ll, void (*callback)(void*)){
-	node* n;
+void print_list(const list *_ll){
+	
+	node *n;
 	for(n = _ll->head; n; n = n->next)
-		(*callback)(n->data);
+		n->print_callback(n->data);
+}
+
+void browse_list(list* _ll, void (*_callback)(void*)){
+	node *n;
+	for(n = _ll->head; n; n = n->next)
+		(*_callback)(n->data);
+}
+
+void process_list(list* _ll, void(*_callback)(list*, node*)){
+
+	node *n;
+	for(n = _ll->head; n; n = n->next)
+		(*_callback)(_ll, n);
 }

@@ -8,6 +8,9 @@ typedef struct _crecre {
 	int lifeexp;
 	int adultage;
 	char sex;
+	int breeding;
+	int pause;
+	int eggs;
 	list *lgens;
 } crecre;
 
@@ -15,5 +18,9 @@ crecre* create_crecre(int, int, char);
 void delete_crecre(crecre*);
 void print_crecre(const crecre*);
 crecre* breed(const crecre*, const crecre*);
+
+void reap(list*, node*);
+void repro(list*, node*);
+crecre* get_male(list*);
 
 #endif

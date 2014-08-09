@@ -18,5 +18,6 @@ node* add_list(list*, void*, void(*delete_callback)(void*), void(*print_callback
 void delete_list(list*);
 void delete_node(list*, node*);
 void browse_list(list*, void (*callback)(void*));
+void process_list(list*, void (*callback)(list*, node*));
 
 #endif
