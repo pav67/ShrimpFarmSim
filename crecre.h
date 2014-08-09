@@ -15,8 +15,8 @@ typedef struct _crecre {
 } crecre;
 
 crecre* create_crecre(int, int, char);
-void delete_crecre(crecre*);
-void print_crecre(const crecre*);
+void delete_crecre(void*);
+void print_crecre(void*);
 crecre* breed(const crecre*, const crecre*);
 
 void reap(list*, node*);

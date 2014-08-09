@@ -8,6 +8,8 @@ int main(int argc, char** argv){
 
 	srand(time(NULL));
 
+	list *aqua = init_list();
+
 	genome* fg1 = create_genome('T', 'T', 'T');
 	genome* fg2 = create_genome('B', 'R', 'R');
 	genome* mg1 = create_genome('T', 'B', 'T');
@@ -17,7 +19,7 @@ int main(int argc, char** argv){
 
 	int i;
 
-	mc->age = 300;
+	mc->age = 510;
 	fc->age = 280;
 	
 	add_list(fc->lgens, fg1, delete_genome, print_genome);
@@ -25,20 +27,22 @@ int main(int argc, char** argv){
 	add_list(mc->lgens, mg1, delete_genome, print_genome);
 	add_list(mc->lgens, mg2, delete_genome, print_genome);
 
-	printf("---- male ----\n");
-	print_crecre(fc);
-	printf("---- female ----\n");
-	print_crecre(mc);
+	add_list(aqua, fc, delete_crecre, print_crecre);
+	add_list(aqua, mc, delete_crecre, print_crecre);
 
-	for(i = 0; i < 10; i++){
-		crecre *ncre = breed(fc, mc);
-		printf("---- baby shrimp ----\n");
-		print_crecre(ncre);
-		delete_crecre(ncre);
+	printf("avant");
+	print_list(aqua);
+
+	for(i = 0; i<100; i++){
+	
+		process_list(aqua, reap);
+		process_list(aqua, repro);
 	}
 
-	delete_crecre(fc);
-	delete_crecre(mc);
+	printf("apres");
+	print_list(aqua);
+
+	delete_list(aqua);
 
 	return EXIT_SUCCESS;
 }

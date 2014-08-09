@@ -38,16 +38,18 @@ crecre* breed(const crecre *_father, const crecre *_mother){
 	return ncre;
 }
 
-void delete_crecre(crecre *_cre){
+void delete_crecre(void *_cre){
 
-	delete_list(_cre->lgens);
-	free(_cre);
+	crecre *cre = (crecre*)_cre;
+	delete_list(cre->lgens);
+	free(cre);
 }
 
-void print_crecre(const crecre *_cre){
+void print_crecre(void *_cre){
+	crecre *cre = (crecre*)_cre;
 	printf("[ genome : ");
-	print_list(_cre->lgens);
-	printf(" - sex : %c -  age : %d - lifeexp : %d ]\n", _cre->sex, _cre->age, _cre->lifeexp);
+	print_list(cre->lgens);
+	printf(" - sex : %c -  age : %d - lifeexp : %d ]\n", cre->sex, cre->age, cre->lifeexp);
 }
 
 void reap(list *_ll, node *_n){
@@ -70,8 +72,8 @@ void repro(list *_ll, node *_n){
 	if(cre->age < cre->adultage) return;
 	// If in pause process, skip
 	if(cre->pause > 0) { cre->pause--; return; }
-	// If no breeding in progress, skip
-	if(cre->breeding == 0) return;
+	// If no breeding in progress, start one, and skip
+	if(cre->breeding == 0) { cre->breeding = generate_gestation_time(); return; }
 
 	cre->breeding--;
 

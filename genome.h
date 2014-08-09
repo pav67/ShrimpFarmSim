@@ -9,7 +9,8 @@ typedef struct _genome {
 } genome;
 
 genome* create_genome(char,char,char);
-void delete_genome(genome*);
-void print_genome(const genome*);
+void delete_genome(void*);
+void print_genome(void*);
+void print_genome_full(void*);
 
 #endif
