@@ -100,7 +100,7 @@ crecre* get_male(list *_ll){
 	
 	res = NULL;
 
-	for(n = _ll->head; n; n->next){
+	for(n = _ll->head; n; n = n->next){
 	
 		cre = (crecre*)n->data;
 		if(cre->sex == 'M' && cre->age >= cre->adultage){
