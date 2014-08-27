@@ -28,3 +28,33 @@ void print_genome_full(void* _gens){
 	genome *gens = (genome*)_gens;
 	printf("[ g1 : %c - g2 : %c ]", gens->g1, gens->g2);
 }
+
+char get_genome(list *_ll, char _g){
+
+	node *n;
+	genome *g;
+	char c;
+
+	for(n = _ll->head; n; n = n->next){
+
+		g = (genome*)n->data;
+
+		if(g->recessive == _g){
+
+			if(g->g1 == g->g2){
+				c = g->g1;
+				break;
+			}
+
+			if(g->g1 == g->recessive){
+				c = g->g2;
+				break;
+			}
+
+			c = g->g1;
+			break;
+		}
+	}
+
+	return c;
+}

@@ -1,6 +1,8 @@
 #ifndef __genome_h
 #define __genome_h
 
+#include <list.h>
+
 typedef struct _genome {
 
 	char g1;
@@ -12,5 +14,6 @@ genome* create_genome(char,char,char);
 void delete_genome(void*);
 void print_genome(void*);
 void print_genome_full(void*);
+char get_genome(list*, char);
 
 #endif

@@ -27,6 +27,27 @@ node* add_list(list *_ll, void *_data, void (*_delete_callback)(void*), void (*_
 	return n;
 }
 
+void unlink_node(list *_ll, node *_n){
+	
+	if(!_n) return;
+
+        if(_n->next){
+                if(_n->prev) {
+                        _n->prev->next = _n->next;
+                        _n->next->prev = _n->prev;
+                }
+                else{
+                        _ll->head = _n->next;
+                        _n->next->prev = NULL;
+                }
+        }
+	else{
+                if(_n->prev) _n->prev->next = NULL;
+                else _ll->head = NULL;
+        }
+}
+
+
 void delete_list(list *_ll){
 	
 	node *n1 = _ll->head;
@@ -46,7 +67,7 @@ void delete_list(list *_ll){
 void delete_node(list *_ll, node *_n){
 
 	if(!_n) return;
-
+	printf("delete : [%p]->[%p]->[%p]\n",_n->prev,_n,_n->next);
 	if(_n->next){
 		if(_n->prev) {
 			_n->prev->next = _n->next;
@@ -61,13 +82,16 @@ void delete_node(list *_ll, node *_n){
 		else _ll->head = NULL;
 	}
 
-	_n->delete_callback(_n->data);
+	if(_n->data)
+		_n->delete_callback(_n->data);
+
 	free(_n);
 }
 
 void print_list(const list *_ll){
 	
 	node *n;
+	if(_ll)
 	for(n = _ll->head; n; n = n->next)
 		n->print_callback(n->data);
 }
