@@ -66,24 +66,35 @@ void delete_list(list *_ll){
 
 void delete_node(list *_ll, node *_n){
 
+	node *prev;
+	node *next;
+
 	if(!_n) return;
-	printf("delete : [%p]->[%p]->[%p]\n",_n->prev,_n,_n->next);
-	if(_n->next){
-		if(_n->prev) {
-			_n->prev->next = _n->next;
-			_n->next->prev = _n->prev;
+
+	prev = _n->prev;
+	next = _n->next;
+
+	if(next){
+		if(prev) {
+			prev->next = next;
+			next->prev = prev;
 		}
 		else{
-			_ll->head = _n->next;
-			_n->next->prev = NULL;
+			_ll->head = next;
+			next->prev = NULL;
 		}
 	}else{
-		if(_n->prev) _n->prev->next = NULL;
-		else _ll->head = NULL;
+		if(prev){
+			prev->next = NULL;
+		}
+		else{
+			_ll->head = NULL;
+		}
 	}
 
-	if(_n->data)
+	if(_n->data){
 		_n->delete_callback(_n->data);
+	}
 
 	free(_n);
 }
@@ -96,15 +107,19 @@ void print_list(const list *_ll){
 		n->print_callback(n->data);
 }
 
-void browse_list(list* _ll, void (*_callback)(void*)){
+void browse_list(list *_ll, void (*_callback)(void*)){
 	node *n;
 	for(n = _ll->head; n; n = n->next)
 		(*_callback)(n->data);
 }
 
-void process_list(list* _ll, void(*_callback)(list*, node*)){
+void process_list(list *_ll, void(*_callback)(list*, node*)){
 
 	node *n;
 	for(n = _ll->head; n; n = n->next)
 		(*_callback)(_ll, n);
+}
+
+void plouf(list *_ll, node *_n){
+	print_crecre((crecre*)_n->data);
 }

@@ -21,4 +21,6 @@ void delete_node(list*, node*);
 void browse_list(list*, void (*callback)(void*));
 void process_list(list*, void (*callback)(list*, node*));
 
+void plouf(list*,node*);
+
 #endif

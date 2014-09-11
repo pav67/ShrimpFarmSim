@@ -14,6 +14,7 @@ genome* create_genome(char _g1, char _g2, char _recessive){
 }
 
 void delete_genome(void* _gens){
+	//print_genome((genome*)_gens);
 	free(_gens);
 }
 

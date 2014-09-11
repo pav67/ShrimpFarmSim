@@ -50,7 +50,13 @@ void selection(aqua *_aqua, list *_ll){
 		cre = (crecre*)n->data;
 		gen = get_genome(cre->lgens, 'T');
 
-		if(gen == 'T' && _ll != _aqua->twb_tank){
+		if(gen == 'B' && _ll == _aqua->twb_tank && cre->age > 100){
+			
+			unlink_node(_ll, n);
+			add_list(_aqua->f1_tank, cre, delete_crecre, print_crecre);
+		}
+
+		if(gen == 'T' && _ll != _aqua->twb_tank && cre->age > 100){
 			unlink_node(_ll, n);
 			add_list(_aqua->twb_tank, cre, delete_crecre, print_crecre);
 		}

@@ -20,7 +20,7 @@ int main(int argc, char** argv){
 
 	int i;
 
-	mc->age = 350;
+	mc->age = 590;
 	fc->age = 400;
 	
 	add_list(fc->lgens, fg1, delete_genome, print_genome);
@@ -31,22 +31,28 @@ int main(int argc, char** argv){
 	add_list(aq->twb_tank, fc, delete_crecre, print_crecre);
 	add_list(aq->twb_tank, mc, delete_crecre, print_crecre);
 	
-	print_list(aq->twb_tank);
+	//print_list(aq->twb_tank);
+	process_list(aq->twb_tank,plouf);
 
-	for(i = 0; i < 300; i++){
+	for(i = 0; i < 100; i++){
+		process_reap(aq);
+		process_repro(aq);
+	}
+
+	/*for(i = 0; i < 100; i++){
+
 		process_reap(aq);
 		process_repro(aq);
 		process_selection(aq);
-	}
+	}*/
 
 	printf("twb\n");
 	print_list(aq->twb_tank);
-	printf("f1\n");
+/*	printf("f1\n");
 	print_list(aq->f1_tank);
 	printf("trash\n");
 	print_list(aq->trash_tank);
-	
-	delete_aqua(aq);
+	*/delete_aqua(aq);
 	
 	return EXIT_SUCCESS;
 }
