@@ -128,11 +128,11 @@ void browse_list(list *_ll, void (*_callback)(void*)){
 
 void process_list(list *_ll, void(*_callback)(list*, node*)){
 
-	node *n;
-	for(n = _ll->head; n; n = n->next)
+	node *n, *tmp;
+	n = _ll->head;
+	while(n){
+		tmp = n->next;
 		(*_callback)(_ll, n);
-}
-
-void plouf(list *_ll, node *_n){
-	print_crecre((crecre*)_n->data);
+		n = tmp;
+	}
 }

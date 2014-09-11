@@ -62,9 +62,6 @@ void reap(list *_ll, node *_n){
 	cre->age++;
 
 	if(cre->age > cre->lifeexp){
-		printf("reap cre : ");
-	printf(" - sex : %c -  age : %d - lifeexp : %d ]\n", cre->sex, cre->age, cre->lifeexp);
-		//print_crecre(cre);
 		delete_node(_ll, _n);
 	}
 }
