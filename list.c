@@ -63,7 +63,7 @@ void delete_list(list *_ll){
 
 	free(_ll);
 }
-
+/*
 void delete_node(list *_ll, node *_n){
 
 	node *prev;
@@ -98,7 +98,20 @@ void delete_node(list *_ll, node *_n){
 
 	free(_n);
 }
+*/
+void delete_node(list *_ll, node *_n){
 
+        if(!(_n->prev))
+                _ll->head = _n->next;
+        else   
+                _n->prev->next = _n->next;
+
+        if(_n->next)
+                _n->next->prev = _n->prev;
+
+	_n->delete_callback(_n->data);
+        free(_n);
+}
 void print_list(const list *_ll){
 	
 	node *n;
