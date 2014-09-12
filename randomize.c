@@ -12,6 +12,11 @@ const genome* generate_genome(const genome* _father, const genome* _mother){
 	gens->g1 = mix[r][0];
 	gens->g2 = mix[r][1];
 	gens->recessive = _father->recessive;
+	
+	if(gens->g1 == gens->recessive && gens->g2 == gens->recessive)
+		gens->generation = 0;
+	else
+		gens->generation++;
 
 	return gens;
 }

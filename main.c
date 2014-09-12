@@ -11,10 +11,10 @@ int main(int argc, char** argv){
 
 	aqua* aq = init_aqua();
 	
-	genome* fg1 = create_genome('T', 'T', 'T');
-	genome* fg2 = create_genome('B', 'R', 'R');
-	genome* mg1 = create_genome('T', 'B', 'T');
-	genome* mg2 = create_genome('R', 'R', 'R');
+	genome* fg1 = create_genome('T', 'T', 'T', 0);
+	genome* fg2 = create_genome('B', 'R', 'R', 1);
+	genome* mg1 = create_genome('T', 'B', 'T', 1);
+	genome* mg2 = create_genome('R', 'R', 'R', 0);
 	crecre* fc = create_crecre(180, 600, 'F');
 	crecre* mc = create_crecre(200, 600, 'M');
 

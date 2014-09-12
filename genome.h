@@ -8,9 +8,10 @@ typedef struct _genome {
 	char g1;
 	char g2;
 	char recessive;
+	int generation;
 } genome;
 
-genome* create_genome(char,char,char);
+genome* create_genome(char,char,char,int);
 void delete_genome(void*);
 void print_genome(void*);
 void print_genome_full(void*);
