@@ -28,23 +28,19 @@ node* add_list(list *_ll, void *_data, void (*_delete_callback)(void*), void (*_
 }
 
 void unlink_node(list *_ll, node *_n){
-	
-	if(!_n) return;
+	if(_n->prev)
+                _n->prev->next = _n->next;
+        else{
+                _ll->head = _n->next;
+		_n->next->prev = NULL;
+	}
 
-        if(_n->next){
-                if(_n->prev) {
-                        _n->prev->next = _n->next;
-                        _n->next->prev = _n->prev;
-                }
-                else{
-                        _ll->head = _n->next;
-                        _n->next->prev = NULL;
-                }
-        }
-	else{
-                if(_n->prev) _n->prev->next = NULL;
-                else _ll->head = NULL;
-        }
+        if(_n->next)
+                _n->next->prev = _n->prev;
+	else
+		if(_n->prev)
+			_n->prev->next = NULL;
+	
 }
 
 
@@ -57,61 +53,23 @@ void delete_list(list *_ll){
 
 		n2 = n1->next;
 		n1->delete_callback(n1->data);
-		free(n1);	
+		if(n1) free(n1);	
 		n1 = n2;
 	}
 
-	free(_ll);
+	if(_ll) free(_ll);
+	_ll = NULL;
 }
-/*
+
 void delete_node(list *_ll, node *_n){
-
-	node *prev;
-	node *next;
-
-	if(!_n) return;
-
-	prev = _n->prev;
-	next = _n->next;
-
-	if(next){
-		if(prev) {
-			prev->next = next;
-			next->prev = prev;
-		}
-		else{
-			_ll->head = next;
-			next->prev = NULL;
-		}
-	}else{
-		if(prev){
-			prev->next = NULL;
-		}
-		else{
-			_ll->head = NULL;
-		}
-	}
-
-	if(_n->data){
-		_n->delete_callback(_n->data);
-	}
-
-	free(_n);
-}
-*/
-void delete_node(list *_ll, node *_n){
-
-        if(!(_n->prev))
-                _ll->head = _n->next;
-        else   
-                _n->prev->next = _n->next;
-
-        if(_n->next)
-                _n->next->prev = _n->prev;
+	
+	unlink_node(_ll, _n);
 
 	_n->delete_callback(_n->data);
-        free(_n);
+        if(_n) free(_n);
+	_n = NULL;
 }
+
 void print_list(const list *_ll){
 	
 	node *n;

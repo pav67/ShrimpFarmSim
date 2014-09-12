@@ -18,7 +18,7 @@ void delete_aqua(aqua *_aqua){
 	delete_list(_aqua->twb_tank);
 	delete_list(_aqua->f1_tank);
 	delete_list(_aqua->trash_tank);
-	free(_aqua);
+	if(_aqua) free(_aqua);
 }
 
 void process_repro(aqua *_aqua){
@@ -41,24 +41,27 @@ void process_selection(aqua *_aqua){
 
 void selection(aqua *_aqua, list *_ll){
 
-	node *n;
+	node *n, *tmp;
 	crecre *cre;
-	char gen;
+	char gene;
 
-	for(n = _ll->head; n; n = n->next){
+	for(n = _ll->head; n; n = tmp){
 
 		cre = (crecre*)n->data;
-		gen = get_genome(cre->lgens, 'T');
+		gene = get_genome(cre->lgenes, 'T');
+		tmp = n->next;
 
-		if(gen == 'B' && _ll == _aqua->twb_tank && cre->age > 100){
+		if(gene == 'B' && _ll == _aqua->twb_tank && cre->age > 100){
 			
 			unlink_node(_ll, n);
 			add_list(_aqua->f1_tank, cre, delete_crecre, print_crecre);
+			if(n) free(n);
 		}
 
-		if(gen == 'T' && _ll != _aqua->twb_tank && cre->age > 100){
+		if(gene == 'T' && _ll != _aqua->twb_tank && cre->age > 100){
 			unlink_node(_ll, n);
-			add_list(_aqua->twb_tank, cre, delete_crecre, print_crecre);
+			add_list(_aqua->f1_tank, cre, delete_crecre, print_crecre);
+			if(n) free(n);
 		}
 	}
 }

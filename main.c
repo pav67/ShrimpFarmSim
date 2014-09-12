@@ -23,17 +23,17 @@ int main(int argc, char** argv){
 	mc->age = 200;
 	fc->age = 210;
 	
-	add_list(fc->lgens, fg1, delete_genome, print_genome);
-	add_list(fc->lgens, fg2, delete_genome, print_genome);
-	add_list(mc->lgens, mg1, delete_genome, print_genome);
-	add_list(mc->lgens, mg2, delete_genome, print_genome);
+	add_list(fc->lgenes, fg1, delete_genome, print_genome);
+	add_list(fc->lgenes, fg2, delete_genome, print_genome);
+	add_list(mc->lgenes, mg1, delete_genome, print_genome);
+	add_list(mc->lgenes, mg2, delete_genome, print_genome);
 
 	add_list(aq->twb_tank, fc, delete_crecre, print_crecre);
 	add_list(aq->twb_tank, mc, delete_crecre, print_crecre);
 	
-	print_list(aq->twb_tank);
+	//print_list(aq->twb_tank);
 
-	for(i = 0; i < 100; i++){
+	for(i = 0; i < 90; i++){
 		process_reap(aq);
 		process_repro(aq);
 	}
@@ -45,13 +45,14 @@ int main(int argc, char** argv){
 		process_selection(aq);
 	}
 
-	printf("twb\n");
+	/*printf("twb\n");
 	print_list(aq->twb_tank);
 	printf("f1\n");
 	print_list(aq->f1_tank);
 	printf("trash\n");
 	print_list(aq->trash_tank);
-	
+	*/
+
 	delete_aqua(aq);
 	
 	return EXIT_SUCCESS;

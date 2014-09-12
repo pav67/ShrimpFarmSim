@@ -16,7 +16,7 @@ crecre* create_crecre(int _adultage, int _lifeexp, char _sex){
 	ncre->adultage = _adultage;
 	ncre->lifeexp = _lifeexp;
 	ncre->sex = _sex;
-	ncre->lgens = init_list();
+	ncre->lgenes = init_list();
 
 	return ncre;
 }
@@ -24,12 +24,12 @@ crecre* create_crecre(int _adultage, int _lifeexp, char _sex){
 crecre* breed(const crecre *_father, const crecre *_mother){
 
 	crecre *ncre = create_crecre(generate_adult_age(), generate_lifeexp(), generate_sex());
-	node *n1 = _father->lgens->head, *n2 = _mother->lgens->head;
+	node *n1 = _father->lgenes->head, *n2 = _mother->lgenes->head;
 	genome *ngen;
 	
 	while(n1 && n2){	
 		ngen = generate_genome((const genome*)n1->data, (const genome*)n2->data);
-		add_list(ncre->lgens, ngen, delete_genome, print_genome);
+		add_list(ncre->lgenes, ngen, delete_genome, print_genome);
 
 		n1 = n1->next;
 		n2 = n2->next;
@@ -41,15 +41,16 @@ crecre* breed(const crecre *_father, const crecre *_mother){
 void delete_crecre(void *_cre){
 
 	crecre *cre = (crecre*)_cre;
-	delete_list(cre->lgens);
-	free(cre);
+	delete_list(cre->lgenes);
+	if(cre) free(cre);
+	cre = NULL;
 }
 
 void print_crecre(void *_cre){
 	
 	crecre *cre = (crecre*)_cre;
 	printf("[ genome : ");
-	print_list(cre->lgens);
+	print_list(cre->lgenes);
 	printf(" - sex : %c -  age : %d - lifeexp : %d ]\n", cre->sex, cre->age, cre->lifeexp);
 }
 
@@ -102,7 +103,6 @@ void repro(list *_ll, node *_n){
 }
 
 crecre* get_male(list *_ll){
-	
 	node *n;
 	crecre *cre, *res;
 	crecre **tcre = NULL;
@@ -115,16 +115,16 @@ crecre* get_male(list *_ll){
 		cre = (crecre*)n->data;
 		if(cre->sex == 'M' && cre->age >= cre->adultage){
 			i++;
-		//	tcre = (crecre**)realloc(tcre, i * sizeof(crecre*));
-		//	tcre[i] = cre;
+			tcre = (crecre**)realloc(tcre, i * sizeof(crecre*));
+			tcre[i-1] = cre;
 			res = cre;
 		}
 	}
-/*
+
 	if(tcre){
 		res = tcre[rand()%(i+1)];
 		free(tcre);
-	}*/
+	}
 
-	return res;
+	return res;	
 }

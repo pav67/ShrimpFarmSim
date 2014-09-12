@@ -11,7 +11,7 @@ typedef struct _crecre {
 	int breeding;
 	int pause;
 	int eggs;
-	list *lgens;
+	list *lgenes;
 } crecre;
 
 crecre* create_crecre(int, int, char);
