@@ -117,7 +117,6 @@ crecre* get_male(list *_ll){
 			i++;
 			tcre = (crecre**)realloc(tcre, i * sizeof(crecre*));
 			tcre[i-1] = cre;
-			res = cre;
 		}
 	}
 
