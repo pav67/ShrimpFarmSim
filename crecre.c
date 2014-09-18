@@ -103,6 +103,7 @@ void repro(list *_ll, node *_n){
 }
 
 crecre* get_male(list *_ll){
+	
 	node *n;
 	crecre *cre, *res;
 	crecre **tcre = NULL;
@@ -121,7 +122,7 @@ crecre* get_male(list *_ll){
 	}
 
 	if(tcre){
-		res = tcre[rand()%(i+1)];
+		res = tcre[rand()%i];
 		free(tcre);
 	}
 
