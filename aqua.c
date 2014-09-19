@@ -60,7 +60,7 @@ void selection(aqua *_aqua, list *_ll){
 
 		if(gene == 'T' && _ll != _aqua->twb_tank && cre->age > 100){
 			unlink_node(_ll, n);
-			add_list(_aqua->f1_tank, cre, delete_crecre, print_crecre);
+			add_list(_aqua->twb_tank, cre, delete_crecre, print_crecre);
 			if(n) free(n);
 		}
 	}
