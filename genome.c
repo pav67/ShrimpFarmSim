@@ -31,11 +31,10 @@ void print_genome_full(void *_gene){
 	printf("[ g1 : %c - g2 : %c - recesive : %c - generation : %d ]", gene->g1, gene->g2, gene->recessive, gene->generation);
 }
 
-char get_genome(list *_ll, char _g){
+genome* get_genome(list *_ll, char _g){
 
 	node *n;
-	genome *g;
-	char c;
+	genome *g, *res;
 
 	for(n = _ll->head; n; n = n->next){
 
@@ -43,20 +42,22 @@ char get_genome(list *_ll, char _g){
 
 		if(g->recessive == _g){
 
-			if(g->g1 == g->g2){
-				c = g->g1;
-				break;
-			}
-
-			if(g->g1 == g->recessive){
-				c = g->g2;
-				break;
-			}
-
-			c = g->g1;
+			res = g;
 			break;
 		}
 	}
 
+	return res;
+}
+
+char get_expr_gene(genome *_gene){
+	
+	char c;
+			
+	c = _gene->g1;
+
+	if(_gene->g1 != _gene->g2 && _gene->g1 == _gene->recessive)
+		c = _gene->g2;
+	
 	return c;
 }

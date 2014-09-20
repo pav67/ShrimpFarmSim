@@ -15,6 +15,7 @@ genome* create_genome(char,char,char,int);
 void delete_genome(void*);
 void print_genome(void*);
 void print_genome_full(void*);
-char get_genome(list*, char);
+genome* get_genome(list*, char);
+char get_expr_gene(genome*);
 
 #endif

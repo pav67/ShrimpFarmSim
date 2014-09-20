@@ -16,5 +16,7 @@ void process_selection(aqua*);
 void selection(aqua*, list*);
 void process_repro(aqua*);
 void process_reap(aqua*);
+void process_stats(aqua*);
+void stats(list*);
 
 #endif

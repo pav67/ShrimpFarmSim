@@ -53,6 +53,8 @@ int main(int argc, char** argv){
 	print_list(aq->trash_tank);
 	*/
 
+	process_stats(aq);
+
 	delete_aqua(aq);
 	
 	return EXIT_SUCCESS;
