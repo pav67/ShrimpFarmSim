@@ -116,7 +116,7 @@ void stats(list *_ll){
 		// number of TWB shrimps
 		if(get_expr_gene(gtwb) == TWB) ntwb++;
 		// number of red shrimps
-		if(get_expr_gene(gcol) == BEE) nred++;
+		if(get_expr_gene(gcol) == RED) nred++;
 		// total number of shrimps
 		ntot++;
 	}

@@ -19,14 +19,17 @@ const gene* generate_gene(const gene* _father, const gene* _mother){
 	g->recessive = _father->recessive;
 	g->ygene = _father->ygene;
 
-	
-	g->generation = 0;
-
-	if((dad == g->recessive && mom != g->recessive) || (mom == g->recessive && dad != g->recessive))
-		g->generation = 1;
+	if(get_expr_gene(g) == g->recessive)
+		g->generation = 0;
 	else
-		g->generation = _father->generation + 1;
-
+		if(dad == g->recessive || mom == g->recessive)
+			g->generation = 1;
+		else
+			if(_father->generation > _mother->generation)
+				g->generation = _father->generation + 1;
+			else
+				g->generation = _mother->generation + 1;
+		
 	return g;
 }
 
