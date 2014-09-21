@@ -30,10 +30,8 @@ node* add_list(list *_ll, void *_data, void (*_delete_callback)(void*), void (*_
 void unlink_node(list *_ll, node *_n){
 	if(_n->prev)
                 _n->prev->next = _n->next;
-        else{
+        else
                 _ll->head = _n->next;
-		_n->next->prev = NULL;
-	}
 
         if(_n->next)
                 _n->next->prev = _n->prev;

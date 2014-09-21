@@ -1,9 +1,9 @@
 #ifndef __randomize_h
 #define __randomize_h
 
-#include <genome.h>
+#include <gene.h>
 
-const genome* generate_genome(const genome*,const genome*);
+const gene* generate_gene(const gene*,const gene*);
 char generate_sex();
 int generate_lifeexp();
 int generate_egg_number();

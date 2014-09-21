@@ -4,7 +4,7 @@
 #include <crecre.h>
 #include <list.h>
 #include <randomize.h>
-#include <genome.h>
+#include <gene.h>
 
 crecre* create_crecre(int _adultage, int _lifeexp, char _sex){
 
@@ -25,11 +25,11 @@ crecre* breed(const crecre *_father, const crecre *_mother){
 
 	crecre *ncre = create_crecre(generate_adult_age(), generate_lifeexp(), generate_sex());
 	node *n1 = _father->lgenes->head, *n2 = _mother->lgenes->head;
-	genome *ngen;
+	gene *ngen;
 	
 	while(n1 && n2){	
-		ngen = generate_genome((const genome*)n1->data, (const genome*)n2->data);
-		add_list(ncre->lgenes, ngen, delete_genome, print_genome);
+		ngen = generate_gene((const gene*)n1->data, (const gene*)n2->data);
+		add_list(ncre->lgenes, ngen, delete_gene, print_gene);
 
 		n1 = n1->next;
 		n2 = n2->next;

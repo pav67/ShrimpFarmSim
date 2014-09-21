@@ -1,24 +1,33 @@
 #include <stdlib.h>
 #include <time.h>
 #include <randomize.h>
+#include <gene.h>
 
-const genome* generate_genome(const genome* _father, const genome* _mother){
+const gene* generate_gene(const gene* _father, const gene* _mother){
 	
-	genome* gens = malloc(sizeof(genome));
+	allele dad, mom;
+	gene* g = malloc(sizeof(gene));
 	int r = rand()%4;
 	
-	char mix[4][2] = {{_father->g1, _mother->g1}, {_father->g1, _mother->g2}, {_father->g2, _mother->g1}, {_father->g2, _mother->g2}};
+	dad = get_expr_gene(_father);
+	mom = get_expr_gene(_mother);
 
-	gens->g1 = mix[r][0];
-	gens->g2 = mix[r][1];
-	gens->recessive = _father->recessive;
+	allele mix[4][2] = {{_father->g1, _mother->g1}, {_father->g1, _mother->g2}, {_father->g2, _mother->g1}, {_father->g2, _mother->g2}};
+
+	g->g1 = mix[r][0];
+	g->g2 = mix[r][1];
+	g->recessive = _father->recessive;
+	g->ygene = _father->ygene;
+
 	
-	if(gens->g1 == gens->recessive && gens->g2 == gens->recessive)
-		gens->generation = 0;
-	else
-		gens->generation++;
+	g->generation = 0;
 
-	return gens;
+	if((dad == g->recessive && mom != g->recessive) || (mom == g->recessive && dad != g->recessive))
+		g->generation = 1;
+	else
+		g->generation = _father->generation + 1;
+
+	return g;
 }
 
 char generate_sex(){
