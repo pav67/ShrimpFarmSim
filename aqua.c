@@ -72,7 +72,7 @@ void selection(aqua *_aqua, list *_ll){
 		// F2+ Crystal detected in f1
 		if(expr_gene == BEE && _ll == _aqua->f1_tank && cre->age > 30 && g->generation > 1){
 			unlink_node(_ll, n);
-			add_list(_aqua->f1_tank, cre, delete_crecre, print_crecre);
+			add_list(_aqua->trash_tank, cre, delete_crecre, print_crecre);
 			if(n) free(n);
 		}
 
