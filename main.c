@@ -3,14 +3,14 @@
 #include <list.h>
 #include <crecre.h>
 #include <randomize.h>
-#include <aqua.h>
+#include <farm.h>
 #include <gene.h>
 
 int main(int argc, char** argv){
 
 	srand(time(NULL));
 
-	aqua* aq = init_aqua();
+	farm* f = init_farm();
 	
 	gene* fg1 = create_gene(TWB, TWB, TWB, YBEE, 0);
 	gene* fg2 = create_gene(BLACK, RED, RED ,COLOR, 1);
@@ -29,24 +29,24 @@ int main(int argc, char** argv){
 	add_list(mc->lgenes, mg1, delete_gene, print_gene);
 	add_list(mc->lgenes, mg2, delete_gene, print_gene);
 
-	add_list(aq->twb_tank, fc, delete_crecre, print_crecre);
-	add_list(aq->twb_tank, mc, delete_crecre, print_crecre);
+	add_list(f->twb_tank->lshrimps, fc, delete_crecre, print_crecre);
+	add_list(f->twb_tank->lshrimps, mc, delete_crecre, print_crecre);
 
 	for(i = 0; i < 90; i++){
-		process_reap(aq);
-		process_repro(aq);
+		process_reap(f);
+		process_repro(f);
 	}
 
 	for(i = 0; i < 270; i++){
 
-		process_reap(aq);
-		process_repro(aq);
-		process_selection(aq);
+		process_reap(f);
+		process_repro(f);
+		process_selection(f);
 	}
 
-	process_stats(aq);
+	process_stats(f);
 
-	delete_aqua(aq);
+	delete_farm(f);
 	
 	return EXIT_SUCCESS;
 }
