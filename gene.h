@@ -5,13 +5,15 @@
 
 typedef enum _allele {
 	// Type of gene
-	YBEE, COLOR, ALBINO,
+	YBEE, COLOR, ALBINO, SEX,
 	// TWB or Crystal bee
 	TWB, BEE,
 	// Color
 	RED, BLACK,
 	// Albino 
-	ALB, PIGM
+	ALB, PIGM,
+	//Sex
+	MALE, FEMALE
 } allele;
 
 typedef struct _genome {

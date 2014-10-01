@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <list.h>
-#include <crecre.h>
+#include <shrimp.h>
 
 list* init_list(){
 	
@@ -68,7 +68,7 @@ void delete_node(list *_ll, node *_n){
 	_n = NULL;
 }
 
-void print_list(const list *_ll){
+void print_list(list *_ll){
 	
 	node *n;
 	if(_ll)

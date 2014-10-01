@@ -3,7 +3,7 @@
 #include <farm.h>
 #include <tank.h>
 #include <list.h>
-#include <crecre.h>
+#include <shrimp.h>
 #include <gene.h>
 
 farm* init_farm(){
@@ -55,7 +55,7 @@ void process_stats(farm *_f){
 void selection(farm* _f, tank* _t){  
 
         node *n, *tmp;
-        crecre *cre;
+        shrimp *shrp;
         gene *g;
         allele expr_gene;
         list *ll;
@@ -64,36 +64,36 @@ void selection(farm* _f, tank* _t){
 
         for(n = ll->head; n; n = tmp){
 
-                cre = (crecre*)n->data;
-                g = get_gene(cre->lgenes, YBEE);
+                shrp = (shrimp*)n->data;
+                g = get_gene(shrp->lgenes, YBEE);
                 expr_gene = get_expr_gene(g);
                 tmp = n->next;
 
                 // Crystal detected in TWB tank
-                if(expr_gene == BEE && ll == _f->twb_tank->lshrimps && cre->age > 30){
+                if(expr_gene == BEE && ll == _f->twb_tank->lshrimps && shrp->age > 30){
 
                         unlink_node(ll, n);
 
                         // If first generation not expressing TWB gene, put it in f1 tank, otherwise trash
                         if(g->generation == 1)
-                                add_list(_f->f1_tank->lshrimps, cre, delete_crecre, print_crecre);
+                                add_list(_f->f1_tank->lshrimps, shrp, delete_shrimp, print_shrimp);
                         else   
-                                add_list(_f->trash_tank->lshrimps, cre, delete_crecre, print_crecre);
+                                add_list(_f->trash_tank->lshrimps, shrp, delete_shrimp, print_shrimp);
 
                         if(n) free(n);
                 }
 
                 // F2+ Crystal detected in f1
-                if(expr_gene == BEE && ll == _f->f1_tank->lshrimps && cre->age > 30 && g->generation > 1){
+                if(expr_gene == BEE && ll == _f->f1_tank->lshrimps && shrp->age > 30 && g->generation > 1){
                         unlink_node(ll, n);
-                        add_list(_f->trash_tank->lshrimps, cre, delete_crecre, print_crecre);
+                        add_list(_f->trash_tank->lshrimps, shrp, delete_shrimp, print_shrimp);
                         if(n) free(n);
                 }
 
                 // TWB detected outside TWB tank
-                if(expr_gene == TWB && ll != _f->twb_tank->lshrimps && cre->age > 30){
+                if(expr_gene == TWB && ll != _f->twb_tank->lshrimps && shrp->age > 30){
                         unlink_node(ll, n);
-                        add_list(_f->twb_tank->lshrimps, cre, delete_crecre, print_crecre);
+                        add_list(_f->twb_tank->lshrimps, shrp, delete_shrimp, print_shrimp);
                         if(n) free(n);
                 }
         }
