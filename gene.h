@@ -12,7 +12,7 @@ typedef enum _allele {
 	RED, BLACK,
 	// Albino 
 	ALB, PIGM,
-	//Sex
+	// Sex
 	MALE, FEMALE
 } allele;
 
