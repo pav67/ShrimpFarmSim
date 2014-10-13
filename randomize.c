@@ -3,7 +3,7 @@
 #include <randomize.h>
 #include <gene.h>
 
-const gene* generate_gene(const gene* _father, const gene* _mother){
+gene* generate_gene(gene* _father, gene* _mother){
 	
 	allele dad, mom;
 	gene* g = malloc(sizeof(gene));
@@ -33,9 +33,9 @@ const gene* generate_gene(const gene* _father, const gene* _mother){
 	return g;
 }
 
-char generate_sex(){
+allele generate_sex(){
 
-	const char* sex = "FM";
+	allele sex[] = {MALE, FEMALE};
 	return sex[rand()%2]; 
 }
 
