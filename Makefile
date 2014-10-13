@@ -1,9 +1,9 @@
 GCC=gcc
 RM=rm
-SRC=$(wildcard *.c)
+SRC=$(wildcard src/*.c)
 OBJ=$(SRC:.c=.o)
 LDFLAGS=-g
-FLAGS=-I. -g
+FLAGS=-I./header/ -I./data/ -g
 EXEC=main
  
 all : $(EXEC)
@@ -17,5 +17,5 @@ $(EXEC) : $(OBJ)
 .PHONY: clean 
 
 clean : 
-	$(RM) *.o
+	$(RM) src/*.o
 	$(RM) $(EXEC)
