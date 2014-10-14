@@ -47,16 +47,17 @@ void delete_list(list *_ll){
 	node *n1 = _ll->head;
 	node *n2;
 
+	if(!_ll) return;
+
 	while(n1){
 
 		n2 = n1->next;
 		n1->delete_callback(n1->data);
-		if(n1) free(n1);	
+		free(n1);	
 		n1 = n2;
 	}
 
-	if(_ll) free(_ll);
-	_ll = NULL;
+	free(_ll);
 }
 
 void delete_node(list *_ll, node *_n){
@@ -64,8 +65,7 @@ void delete_node(list *_ll, node *_n){
 	unlink_node(_ll, _n);
 
 	_n->delete_callback(_n->data);
-        if(_n) free(_n);
-	_n = NULL;
+        free(_n);
 }
 
 void print_list(list *_ll){

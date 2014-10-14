@@ -24,15 +24,18 @@ shrimp* create_shrimp(int _adultage, int _lifeexp, allele _sex){
 shrimp* breed(shrimp *_father, shrimp *_mother){
 
 	shrimp *shrp = create_shrimp(generate_adult_age(), generate_lifeexp(), generate_sex());
-	node *n1 = _father->lgenes->head, *n2 = _mother->lgenes->head;
-	gene *ngen;
+	node *n = _father->lgenes->head;
+	gene *ngen, *ma;
 	
-	while(n1 && n2){	// MODIFY THIS ALGORITHM
-		ngen = generate_gene((gene*)n1->data, (gene*)n2->data);
+	while(n){
+		
+		ma = get_gene(_mother->lgenes, ((gene*)n->data)->ygene);
+		if(!ma) continue;
+
+		ngen = generate_gene((gene*)n->data, ma);
 		add_list(shrp->lgenes, ngen, delete_gene, print_gene);
 
-		n1 = n1->next;
-		n2 = n2->next;
+		n = n->next;
 	}
 
 	return shrp;

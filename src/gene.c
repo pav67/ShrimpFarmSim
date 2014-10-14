@@ -17,7 +17,6 @@ gene* create_gene(allele _g1, allele _g2, allele _recessive, allele _ygene, int 
 
 void delete_gene(void *_gene){
 	if(_gene) free(_gene);
-	_gene = NULL;
 }
 
 void print_gene(void *_gene){
@@ -32,16 +31,16 @@ void print_gene_full(void *_gene){
 	printf("[ g1 : %c - g2 : %c - recesive : %c - generation : %d ]", g->g1, g->g2, g->recessive, g->generation);
 }
 
-gene* get_gene(list *_ll, allele _g){
+gene* get_gene(list *_ll, allele _a){
 
 	node *n;
-	gene *g, *res;
+	gene *g, *res = NULL;
 
 	for(n = _ll->head; n; n = n->next){
 
 		g = (gene*)n->data;
 
-		if(g->ygene == _g){
+		if(g->ygene == _a){
 
 			res = g;
 			break;
